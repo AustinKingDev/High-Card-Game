@@ -1,5 +1,6 @@
 package com.example.HighCard.Service;
 
+import com.example.HighCard.Models.Card;
 import com.example.HighCard.Models.Deck;
 import org.springframework.stereotype.Service;
 
@@ -17,4 +18,10 @@ public class DeckService {
         var deck = new Deck(deckString);
         return deck;
     }
+
+//    public Deck shuffleDeck(Deck deck) {
+//        for (int i=0; i<deck.count(); i++) {
+//
+//        }
+//    }
 }

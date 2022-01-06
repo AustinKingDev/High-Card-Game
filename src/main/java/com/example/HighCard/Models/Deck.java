@@ -19,18 +19,11 @@ public class Deck implements Iterable<Card> {
     private ArrayList<Card> cards;
     private int currentCardIndex = 0;
 
-    /**
-     * Default constructor initializes an empty deck
-     */
+
     public Deck() {
         this.cards = new ArrayList<Card>();
     }
 
-    /**
-     * Parses a string and instantiates a deck with the corresponding cards.
-     *
-     * @param deckStr  a string of cards such as "2C 3H JD"
-     */
     public Deck(String deckStr) {
         this.cards = new ArrayList<Card>();
         Matcher m = Pattern.compile("([2-9]|10|[AJKQ])([CDHS]) ?").matcher(deckStr);
@@ -94,6 +87,11 @@ public class Deck implements Iterable<Card> {
 
         Card card = cards.get(currentCardIndex);
         currentCardIndex = (currentCardIndex + 1) % count();
+        return card;
+    }
+
+    public Card getCurrentCard() {
+        Card card = cards.get(currentCardIndex);
         return card;
     }
 }
