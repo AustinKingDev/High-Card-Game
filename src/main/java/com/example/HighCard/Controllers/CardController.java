@@ -1,6 +1,7 @@
 package com.example.HighCard.Controllers;
 
 import com.example.HighCard.Models.Card;
+import com.example.HighCard.Service.CardService;
 import com.example.HighCard.Service.DeckService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -15,18 +16,19 @@ public class CardController {
     @Autowired
     private DeckService deckService;
 
-    @GetMapping
+    @GetMapping("/")
     String getCard(Model model) {
         var deck = deckService.createDeck();
         var rand = new Random();
         int playerNum = rand.nextInt(52);
         int dealerNum = rand.nextInt(52);
-
         Card playerCard = deck.getAtIndex(playerNum);
         Card dealerCard = deck.getAtIndex(dealerNum);
+        String outcome = CardService.getOutcome(deck,playerCard,dealerCard);
 
-        model.addAttribute("playerCard", playerCard);
-        model.addAttribute("dealerCard", dealerCard);
+        model.addAttribute("playerCard", playerCard.toString());
+        model.addAttribute("dealerCard", dealerCard.toString());
+        model.addAttribute("outcome", outcome);
         return "DeckCount";
     }
 
